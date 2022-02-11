@@ -1,0 +1,41 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.217.2/containers/docker-existing-dockerfile
+{
+	"name": "Nuxt Devcontainer",
+	"dockerFile": "../Dockerfile",
+	"overrideCommand": false,
+	"build": {
+		"target": "dev"
+	},
+	"context": "..",
+	"runArgs": [
+		"--env-file",
+		".env.docker"
+	],
+	"workspaceMount": "source=${localWorkspaceFolder},target=/opt/app,type=bind,consistency=cached",
+	"workspaceFolder": "/opt/app/",
+	"forwardPorts": [3000, 9229, 9230],
+	"portsAttributes": {
+		"3000": {
+			"label": "Application Port",
+			"onAutoForward": "notify",
+		},
+		"9229": {
+			"label": "Debug Port",
+			"onAutoForward": "silent"
+		},
+		"9230": {
+			"label": "Debug Port",
+			"onAutoForward": "silent"
+		}
+	},
+	"extensions": [
+		"octref.vetur",
+		"eg2.vscode-npm-script",
+		"christian-kohler.npm-intellisense",
+		"christian-kohler.path-intellisense",
+		"dbaeumer.vscode-eslint"
+	],
+	"postCreateCommand": ["npm", "install"],
+	"remoteUser": "node"
+}

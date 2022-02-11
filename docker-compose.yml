@@ -1,0 +1,31 @@
+version: '3.9'
+
+services:
+  nuxt-dev:
+    image: bikewatch/dashboard:dev-latest
+    container_name: nuxt-dev
+    env_file: .env.docker
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dev
+    ports:
+      - "3000:3000"
+      - "9229:9229"
+      - "9230:9230"
+    volumes:
+      - .:/opt/app 
+      - notused:/opt/app/node_modules
+  nuxt-prod:
+    image: bikewatch/dashboard:prod-latest
+    container_name: nuxt-prod
+    env_file: .env.docker
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: prod
+    ports:
+      - "3000:3000"
+
+volumes:
+  notused:
