@@ -89,3 +89,6 @@ Done, your VScode should now have installed the needed plugins and configured a 
 **Q:** How does the multi-stage build work? <br>
 **A:** The production image is created based upon the developer image, by building it within the developer container and transporting the files to an Alpine image. In my testing, image size went from 1,42 GB to about 600MB.
 > :bulb: If this is still to big, you can try reducing it with [Dockerslim](https://dockersl.im/). My image size went from 600 MB to 495.06 MB, but your results may vary.
+> ```bash
+> $ docker-slim build --target <image_name_or_image_id> --include-path /opt/app --include-path /bin
+> ```
